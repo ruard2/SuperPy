@@ -1,0 +1,28 @@
+##Report by Ruard Stolper##
+
+I have learned a lot of new things doing this assignment. Yet now that I know it, it feels like its simple and not worth noticing. If i have to choose three things it will be the following:
+
+- Classes and Router.py : in the past i have always programmed in one big py document, my programs could be hundreds of lines. By using this file structure and simple router py everything is much more well organized.
+
+- In the beginning I was struggling to use the Rich table function in a dynamic way. However i did mannage it (as seen in for example below). In this way a command line interface could be used in a more beautiful and dynamic way.
+
+		#Report data in Rich table
+		table = Table(title="Expired")
+		table.add_column("Product", style="cyan", no_wrap=True)
+		table.add_column("Ammount", style="magenta")
+
+		for item in item_index:
+			table.add_row(f'{items.loc[item,"product_name"]}', f'{items.loc[item,"ammount_bought"]}')
+
+		console = Console()
+		console.print(table)
+
+- I used the panda module to interact with my csv files. I have enjoyed pandas, its very intuitive and makes it easy to interact with the program. Selecting a specific subset of data from the dataframe is for example very easy to do. For example (from export.py):
+			items_bought = pd.read_csv("bought.csv")
+			items_bought = items_bought.iloc[item_index]
+			BoughtExcelFile = pd.ExcelWriter(f"Exported files/Bought {start_date}-{end_date}.xlsx")
+			items_bought.to_excel(BoughtExcelFile, index=False)
+			BoughtExcelFile.save()
+			print(f"Your data is exported and could be found in the folder 'Exported files' as 'Bought {start_date}-{end_date}.xlsx")	
+
+What I did not like is using argparse. Its very prone to errors. I prefer using simple menus with options and clear instuctions. However I understand why should learn this.

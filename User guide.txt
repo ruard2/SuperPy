@@ -1,0 +1,39 @@
+User guide – SuperPY (version 1.0)
+
+This command-line program is build to help you keep track of the inventory of your shop. All data provided by you is saved in two csv files that lives in the same folder than the main program does. In “Bought.csv” all products you bought is registered. In this we also register how many products are left in stock. Your stock could naturally decline by selling producs or by items expiring. Every time you execute this program the program will start by checking if there are products that has expired. In “Sold.csv” every sale made is registerd by day, product and ammount sold. Also the profit made on the sell is registerd. 
+
+The following functions could be used:
+1. “buy” – if you a buy any product you could register it by exceuting this command
+2. “sell” – if you sell a product you could register this through this command. This command will also update your current stock list.
+3. “advance-time” -  this function helps you keep track of products that will expire soon. You can choose how many days you want to advance from this moment by profiding an integer. This function will then report products will be expired on the given day
+4. “report” – this function reports how much of a specific or all products over a specific period of time was sold, the revenue you made on it, the profit made as well as the ammount of this product (or all products) left in stock.
+5. “export” – this function will export a dataset to a xcel sheet or as csv
+
+The program itself has a help function that can be accesed by pressing for example “buy -h”. For example:
+$ Python SuperPy.py buy -h
+usage: main.py [action] buy [-h] --product PRODUCT --buy-price PRICE
+                            [--quantity QUANTITY] --buy-date BUY_DATE
+                            --exp-date EXP_DATE
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --product PRODUCT    product name
+  --buy-price PRICE    buy price per product
+  --quantity QUANTITY  quantity of product
+  --buy-date BUY_DATE  product buy date (format YYYY-MM-DD)
+  --exp-date EXP_DATE  product expiration date (format YYYY-MM-DD)
+
+As you see in this example by pressing “-h” you are profided with the way you should register your sold product. This could be done for all 5 functions decribed above.
+Let me provide an example how to use the functions. Say you want to register 100 oranges you have bought to your inventort. This should be done in this way:
+$ Python SuperPy.py buy --product oranges --buy-price 100 --quantity 50 --buy-date 2023-01-16 --exp-date 2023-01-26
+
+If you make a mistake the program will respond with an error message, for example:
+$ Python SuperPy.py buy --product oranges --buy-price 100 quantity 50 --buy-date 2023-01-16 --exp-date 2023-01-26
+usage: main.py [-h] [action] {buy,sell,advance-time,report,export} ...
+main.py: error: unrecognized arguments: quantity 50
+
+As you see in the above example the user forgot to add “--” before quantity. The program will show where the mistake is made.
+For more explanation on how the program is used we refer you to the inbuild help section.
+
+
+
